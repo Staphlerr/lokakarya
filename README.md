@@ -1,5 +1,15 @@
 # LokaKarya - Website Informasi Kerajinan Tangan di Kota Jepara
 
+Tautan untuk menuju Lokakarya -> [http://belva-ghani-lokakarya.pbp.cs.ui.ac.id/](http://belva-ghani-lokakarya.pbp.cs.ui.ac.id/)
+
+## Nama-nama Anggota Kelompok
+- Muhammad Yahya Ayyas - 2306212083
+- Azzahra Salsabila - 2306219934
+- Muhammad Daffa Abyaz Tjiptadi - 2306210443
+- Harman Hakim - 2306240080
+- Orlando Devito - 2306165950
+- Belva Ghani Abhinaya - 2306203526
+
 ## Deskripsi Aplikasi
 Website "LokaKarya" bertujuan untuk mempermudah pengguna menemukan kerajinan tangan yang dijual di berbagai toko di kota Jepara. Aplikasi ini memberikan informasi detail mengenai produk kerajinan tangan, seperti ukiran, anyaman, dan patung, serta lokasi toko yang menjualnya. Pengguna dapat mencari produk spesifik dan menemukan toko terdekat yang menjual produk tersebut.
 
@@ -34,7 +44,9 @@ Kategori produk yang akan ditampilkan di website:
 - *Aksesoris*
 - *Fashion*
 - *Keramik*
-- *Batik Jepara*
+- *Batik Jepara*<br/>
+
+List initial dataset dapat diakses pada tautan berikut ->  [ristek.link/LokaKaryaDataset](https://docs.google.com/spreadsheets/d/1iwVvKY70utZZBPC0xP1HDhbXZJZnOaFHTg-w9wlMwY0/edit?gid=0#gid=0)
 
 ## Role Pengguna
 1. *Pembeli*:
