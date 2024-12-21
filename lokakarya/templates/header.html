@@ -1,0 +1,92 @@
+{% load static %}
+<nav class="navbar fixed top-0 w-full shadow-md z-50" style="background-color: #fffcf4; font-family: 'tommy-soft-medium', sans-serif;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <!-- Logo on the Left -->
+        <div class="flex items-center justify-start ">
+            <a href="{% url 'landingpage:home' %}" class="flex items-center">
+                <img src="{% static 'images/navbar-logo.png' %}" alt="Lokakarya Logo" class="h-16">
+            </a>
+        </div>
+
+        <!-- Search Bar in the Middle -->
+        <div class="flex-grow mx-10 ml-100">
+            <form method="GET" action="{% url 'landingpage:search' %}" class="flex">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search products, categories, and more..."
+                    class="border p-2 pl-4 rounded-full w-full focus:outline-none focus:border-blue-500"
+                    value="{{ request.GET.q|default_if_none:'' }}"
+                    style="border-color: #694934; color: #694934; ::placeholder { color: #0000; }">
+            </form>
+        </div>
+        
+        <!-- Navigation Links on the Right (only for desktop) -->
+        <ul class="nav-links hidden md:flex space-x-10 ml-0">
+            <!-- Dropdown for Categories -->
+            <li class="relative group">
+                <a href="#" class="text-gray-700 hover:text-blue-500">Categories</a>
+                <ul class="absolute left-0 hidden bg-white shadow-md mt-2 rounded-md py-2 w-40 group-hover:block">
+                    <li><a href="{% url 'productpage:product_page' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Product</a></li>
+                    <li><a href="{% url 'storepage:storepage' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Store</a></li>
+                </ul>
+            </li>
+
+            {% if user.is_authenticated %}
+                <!-- Links for logged-in users -->
+                <li><a href="{% url 'userprofile:profile' username=user.username %}" class="text-gray-700 hover:text-blue-500">Profile</a></li>
+                <li><a href="{% url 'forumandreviewpage:show_forum' %}" class="text-gray-700 hover:text-blue-500">Forum & Review</a></li>
+                <li><a href="{% url 'productpage:favorite_page' %}" class="text--700 hover:text-blue-500">Favorites</a></li>
+                <li><a href="{% url 'authentication:logout' %}" class="text-gray-700 hover:text-blue-500">Logout</a></li>
+                {% if user.is_staff %}
+                    <li><a href="{% url 'adminDashboard' %}" class="text-gray-700 hover:text-blue-500">Admin Dashboard</a></li>
+                {% endif %}
+            {% else %}
+                <!-- Links for guests -->
+                <li><a href="{% url 'authentication:login' %}" class="text-gray-700 hover:text-blue-500">Login</a></li>
+            {% endif %}
+        </ul>
+
+        <!-- Hamburger menu for mobile view -->
+        <div class="hamburger md:hidden flex flex-col cursor-pointer">
+            <span class="bg-gray-800 h-1 w-6 mb-1"></span>
+            <span class="bg-gray-800 h-1 w-6 mb-1"></span>
+            <span class="bg-gray-800 h-1 w-6"></span>
+        </div>
+    </div>
+
+    <!-- Mobile Menu (only visible when clicking the hamburger) -->
+    <div class="mobile-menu hidden">
+        <!-- Tabs -->
+        <div class="tabs flex justify-center space-x-4 bg-gray-100 p-2">
+            <button id="menu-tab" class="tab bg-gray-200 p-2 rounded-lg">Menu</button>
+            <button id="categories-tab" class="tab active-tab bg-gray-200 p-2 rounded-lg">Categories</button>
+        </div>
+
+        <!-- Menu List (hidden by default) -->
+        <ul id="menu-list" class="bg-white text-gray-700 p-4 space-y-2">
+            <li><a href="{% url 'landingpage:home' %}">Main Menu</a></li>
+
+            {% if user.is_authenticated %}
+                <!-- Links for logged-in users -->
+                <li><a href="{% url 'userprofile:profile' username=user.username %}">Profile</a></li>
+                <li><a href="{% url 'productpage:favorite_page' %}">Favorites</a></li>
+                <li><a href="{% url 'forumandreviewpage:show_forum' %}">Forum & Review</a></li>
+                <li><a href="{% url 'authentication:logout' %}">Logout</a></li>
+                {% if user.is_staff %}
+                    <li><a href="{% url 'adminDashboard' %}">Admin Dashboard</a></li>
+                {% endif %}
+            {% else %}
+                <!-- Links for guests -->
+                <li><a href="{% url 'authentication:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+        <!-- Categories List -->
+        <ul id="categories-list" class="bg-white text-gray-700 p-4 space-y-2 hidden">
+            <li><a href="{% url 'productpage:product_page' %}">Product</a></li>
+            <li><a href="{% url 'storepage:storepage' %}">Store</a></li>
+        </ul>
+    </div>
+
+<script src="{% static 'js/navbar.js' %}"></script>
+</nav>
